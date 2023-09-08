@@ -12,6 +12,7 @@ from iob_plic import iob_plic
 from iob_clint import iob_clint
 from iob_uart import iob_uart
 from iob_spi_master import iob_spi_master
+from N25Qxxx import N25Qxxx
 
 
 class iob_soc_opencryptolinux(iob_soc):
@@ -53,6 +54,7 @@ class iob_soc_opencryptolinux(iob_soc):
                 iob_plic,
                 iob_spi_master,
                 (iob_uart, {"purpose": "simulation"}),
+                (N25Qxxx, {"purpose": "simulation"}),
             ]
             + extra_submodules
         )

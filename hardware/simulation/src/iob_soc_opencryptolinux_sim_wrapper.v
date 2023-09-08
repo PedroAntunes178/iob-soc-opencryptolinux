@@ -137,6 +137,18 @@ always @(posedge trap[1]) begin
       .cts_i(uart_rts_o)
    );
 
+   //instantiate flash mem model
+   reg [31:0] Vcc = 'd1800;
+   N25Qxxx flash_mem0(
+      .S(SPI0_SS),
+      .C_(SPI0_SCLK),
+      .HOLD_DQ3(SPI0_HOLD_N),
+      .DQ0(SPI0_MOSI),
+      .DQ1(SPI0_MISO),
+      .Vcc(Vcc),
+      .Vpp_W_DQ2(SPI0_WP_N)
+   );
+
    //Ethernet
 `ifdef IOB_SOC_OPENCRYPTOLINUX_USE_ETHERNET
    //ethernet clock: 4x slower than system clock
